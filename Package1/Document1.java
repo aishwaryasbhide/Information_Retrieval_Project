@@ -1,4 +1,4 @@
-//package Package1;
+package Package1;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,23 +28,6 @@ public class Document {
 		//String output_dir="C:/Users/Aishwarya/Desktop/IR project 1 files/Output files/";
 		//File directory=new File("C:/Users/Aishwarya/Desktop/IR project 1 files/Input Files/");
 		File directory=new File(input_dir);
-		if(!directory.exists())
-		{
-		System.out.println("\nInput directory does not exist..");
-			System.exit(0);
-		}
-		File directory1=new File(output_dir);
-		 if(!directory1.exists())
-                {
-               directory1.mkdir();
-                }
-
-
-
-
-
-
-
 		File[] file_list=directory.listFiles();
 		HashMap<String,Integer> freq_map;
 		freq_map= create_frequency_map(file_list, input_dir);
@@ -55,7 +38,7 @@ public class Document {
 	private static void write_sorted_by_token_name(HashMap<String, Integer> freq_map, String output_dir) throws IOException {
 		// TODO Auto-generated method stub
 		Map<String,Integer> freq_treemap = new TreeMap<String, Integer>(freq_map);
-		File check_file=new File(output_dir+"/Output files with frequencies");
+		File check_file=new File(output_dir+"Output files with frequencies");
 		if(!check_file.exists())
 		{
 			check_file.mkdir();
@@ -63,7 +46,7 @@ public class Document {
 		Iterator<String> i1=freq_treemap.keySet().iterator();
 		String key;
 		Integer val;
-		BufferedWriter fw=new BufferedWriter(new FileWriter(output_dir +"/Output files with frequencies/sorted_by_tokens.txt"));
+		BufferedWriter fw=new BufferedWriter(new FileWriter(output_dir +"Output files with frequencies/sorted_by_tokens.txt"));
 		while(i1.hasNext())
 		{
 		key=i1.next().toString();
@@ -80,7 +63,7 @@ public class Document {
 		// TODO Auto-generated method stub
 		
 		Map<String, Integer> freq_sortedmap = sortByFrequency(freq_map);
-		File check_file=new File(output_dir+"/Output files with frequencies");
+		File check_file=new File(output_dir+"Output files with frequencies");
 		if(!check_file.exists())
 		{
 			check_file.mkdir();
@@ -88,7 +71,7 @@ public class Document {
 		Iterator<String> i1=freq_sortedmap.keySet().iterator();
 		String key;
 		Integer val;
-		BufferedWriter fw=new BufferedWriter(new FileWriter(output_dir+"/Output files with frequencies/sorted_by_freq.txt"));
+		BufferedWriter fw=new BufferedWriter(new FileWriter(output_dir+"Output files with frequencies/sorted_by_freq.txt"));
 		while(i1.hasNext())
 		{
 		key=i1.next().toString();
@@ -111,12 +94,11 @@ public class Document {
 				
 				if(file.isFile())
 				{
-					br=new BufferedReader(new FileReader(input_dir+"/"+file.getName()));
+					br=new BufferedReader(new FileReader(input_dir+file.getName()));
 				}
 		Integer lastIndex=file.getName().lastIndexOf('.');
-		BufferedWriter fw=new BufferedWriter(new FileWriter(output_dir +"/"+ file.getName().substring(0,lastIndex)+".txt"));
-		
-	while((line=br.readLine())!=null)
+		BufferedWriter fw=new BufferedWriter(new FileWriter(output_dir + file.getName().substring(0,lastIndex)+".txt"));
+			while((line=br.readLine())!=null)
 			{
 				StringTokenizer s1=new StringTokenizer(line);
 					while(s1.hasMoreElements())
@@ -153,7 +135,7 @@ public class Document {
 			
 				if(file.isFile())
 				{
-					br=new BufferedReader(new FileReader(input_dir +"/" + file.getName()));
+					br=new BufferedReader(new FileReader(input_dir +file.getName()));
 				}
 			
 			while((line=br.readLine())!=null)
